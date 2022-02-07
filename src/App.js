@@ -1,12 +1,9 @@
-import logo from './logo.svg';
+import Customer from './components/customer/Customer';
 import './App.css';
 
 function App() {
   return (
-    <div className="Gray-background">
-      <img src={logo} lat="logo"/>
-      <h2>Let's development System!!</h2>
-    </div>
+    <Customer/>
   );
 }
 
