@@ -1,44 +1,21 @@
-// import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-import { Link, useHistory } from "react-router-dom";
 import { Table, TableHead, TableBody, TableRow, TableCell } from "@mui/material";
 
-const CustomerListModel = {
-    'customers': [
-        {
-            'id': 1,
-            'image':'https://placeimg.com/64/64/any',
-            'name':'Antaewoong1',
-            'birthday':'19900605',
-            'gender':'男性',
-            'job':'エンジニア'
-        },
-        {
-            'id': 2,
-            'image':'https://placeimg.com/64/64/any',
-            'name':'Antaewoong2',
-            'birthday':'19900605',
-            'gender':'男性',
-            'job':'エンジニア'
-        },
-        {
-            'id': 3,
-            'image':'https://placeimg.com/64/64/any',
-            'name':'Antaewoong3',
-            'birthday':'19900605',
-            'gender':'男性',
-            'job':'エンジニア'
-        },
-    ]
-};
-
-
 const CustomerSearch = () => {
-    // const [searchResult, setSearchResult] = useState<any>(CustomerListModel);
+    const [users, setUsers] = useState([]);
 
-    // useEffect(() => {
-        
-    // }, []);
+    useEffect(() => {
+        callApi()
+        .then(res => setUsers(res))
+        .catch(err => console.log(err));
+    }, []);
+
+    const callApi = async () => {
+       const res = await fetch('/api/v1/users');
+       const body = await res.json();
+       return body;
+    };
 
     return (
         <>
@@ -54,8 +31,8 @@ const CustomerSearch = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {CustomerListModel.customers.map(e => 
-                        <TableRow>
+                    {(users.length) ? users.map(e => 
+                        <TableRow key={e.id}>
                             <TableCell>{e.id}</TableCell>
                             <TableCell><img src={e.image} alt="profile"></img></TableCell>
                             <TableCell>{e.name}</TableCell>
@@ -63,7 +40,7 @@ const CustomerSearch = () => {
                             <TableCell>{e.gender}</TableCell>
                             <TableCell>{e.job}</TableCell>
                         </TableRow>
-                    )}
+                    ) : ""}
                 </TableBody>
             </Table>
             {/* <Link to={"/customer/" + 1}>リンク</Link> */}
