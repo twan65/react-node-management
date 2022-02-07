@@ -1,20 +1,19 @@
 import { useEffect, useState } from "react";
 
 import { Table, TableHead, TableBody, TableRow, TableCell } from "@mui/material";
+import Api from "../../common/api/Api";
+import { GetUsers } from "../../common/api/ApiOptions";
 
 const CustomerSearch = () => {
-    const [users, setUsers] = useState([]);
-
+    const [users, setUsers] = useState<any[]>([]);
     useEffect(() => {
-        callApi()
-        .then(res => setUsers(res))
-        .catch(err => console.log(err));
+        getUsers();
     }, []);
 
-    const callApi = async () => {
-       const res = await fetch('/api/v1/users');
-       const body = await res.json();
-       return body;
+    const getUsers = async () => {
+        const res = await Api.request(new GetUsers());
+        setUsers(res.data)
+        return res.data;
     };
 
     return (

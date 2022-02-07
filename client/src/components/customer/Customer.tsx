@@ -1,8 +1,6 @@
 import CustomerInfo from "./CustomerInfo";
 import CustomerProfile from "./CustomerProfile";
 
-
-
 const Customer = () => {
     return (
         <div>
