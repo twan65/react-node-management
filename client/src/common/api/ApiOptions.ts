@@ -8,4 +8,9 @@ export class GetUsers implements ApiOptions {
   url = "/api/v1/users";
 };
 
+export class GetUser implements ApiOptions {
+  method = "GET";
+  url = "/api/v1/users/";
+};
+
 
