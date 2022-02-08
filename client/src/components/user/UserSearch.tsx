@@ -5,7 +5,7 @@ import { Table, TableHead, TableBody, TableRow, TableCell } from "@mui/material"
 import Api from "../../common/api/Api";
 import { GetUsers } from "../../common/api/ApiOptions";
 
-const CustomerSearch = () => {
+const UserSearch = () => {
     const [users, setUsers] = useState<any[]>([]);
     useEffect(() => {
         getUsers();
@@ -33,7 +33,7 @@ const CustomerSearch = () => {
                 <TableBody>
                     {(users.length) ? users.map(e => 
                         <TableRow key={e.id}>
-                            <TableCell><Link to={`/customer/${e.id}`}>{e.id}</Link></TableCell>
+                            <TableCell><Link to={`/User/${e.id}`}>{e.id}</Link></TableCell>
                             <TableCell><img src={e.image} alt="profile"></img></TableCell>
                             <TableCell>{e.name}</TableCell>
                             <TableCell>{e.birthday}</TableCell>
@@ -47,4 +47,4 @@ const CustomerSearch = () => {
     );
 }
 
-export default CustomerSearch;
+export default UserSearch;

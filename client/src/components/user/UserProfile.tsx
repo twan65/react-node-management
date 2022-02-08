@@ -1,5 +1,5 @@
 
-const CustomerProfile = () => {
+const UserProfile = () => {
     return (
         <>
             <img src="" alt="profile"/>
@@ -7,5 +7,5 @@ const CustomerProfile = () => {
     );
 }
 
-export default CustomerProfile;
+export default UserProfile;
 

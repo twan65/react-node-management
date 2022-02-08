@@ -1,5 +1,5 @@
 
-const CustomerInfo = () => {
+const UserInfo = () => {
     return (
         <div>
             <h2>アンテウン</h2>
@@ -10,5 +10,5 @@ const CustomerInfo = () => {
     );
 }
 
-export default CustomerInfo;
+export default UserInfo;
 

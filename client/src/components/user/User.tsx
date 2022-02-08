@@ -1,15 +1,15 @@
-import CustomerInfo from "./CustomerInfo";
-import CustomerProfile from "./CustomerProfile";
+import UserInfo from "./UserInfo";
+import UserProfile from "./UserProfile";
 
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import Api from "../../common/api/Api";
 import { GetUser } from "../../common/api/ApiOptions";
 
-const Customer = () => {
-    let { user_id } = useParams();
-    let history = useHistory();
+const User = () => {
+    let objectID = useParams();
+    // let history = useHistory();
 
     const [users, setUsers] = useState<any[]>([]);
     useEffect(() => {
@@ -17,17 +17,17 @@ const Customer = () => {
     }, []);
 
     const getUser = async () => {
-        const res = await Api.request(new GetUser());
+        const res = await Api.request(new GetUser().setId(objectID.id));
         setUsers(res.data)
         return res.data;
     };
 
     return (
         <div>
-            <CustomerProfile/>
-            <CustomerInfo/>
+            <UserProfile/>
+            <UserInfo/>
         </div>
     );
 }
 
-export default Customer;
+export default User;
