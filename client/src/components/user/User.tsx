@@ -6,28 +6,41 @@ import { useEffect, useState } from "react";
 
 import Api from "../../common/api/Api";
 import { GetUser } from "../../common/api/ApiOptions";
+import { UserResponseDTO } from "../../models/User";
+
+import { Container } from "@mui/material";
 
 const User = () => {
-    let objectID = useParams();
-    // let history = useHistory();
+  let { user_id }: any = useParams();
 
-    const [users, setUsers] = useState<any[]>([]);
-    useEffect(() => {
-        getUser();
-    }, []);
+  // let history = useHistory();
 
-    const getUser = async () => {
-        const res = await Api.request(new GetUser().setId(objectID.id));
-        setUsers(res.data)
-        return res.data;
-    };
+  const [user, setUser] = useState<UserResponseDTO>();
+  useEffect(() => {
+    getUser();
+  }, []);
 
+  const getUser = async () => {
+    const res = await Api.request(new GetUser().setId(user_id));
+    const data = res.data as UserResponseDTO;
+    setUser(data);
+    return data;
+  };
+
+  if (!user || !user_id) {
     return (
-        <div>
-            <UserProfile/>
-            <UserInfo/>
-        </div>
+      <>
+        <h1>Loading...</h1>
+      </>
     );
-}
+  }
+
+  return (
+    <Container fixed>
+      <UserProfile data={user} />
+      <UserInfo data={user} />
+    </Container>
+  );
+};
 
 export default User;

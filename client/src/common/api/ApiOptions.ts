@@ -19,4 +19,9 @@ export class GetUser implements ApiOptions {
   }
 };
 
+export class CreateUser implements ApiOptions {
+  method = "POST";
+  url = "/api/v1/users";
+};
+
 

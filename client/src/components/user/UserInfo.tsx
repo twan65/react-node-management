@@ -1,11 +1,12 @@
+import { UserResponseDTO } from "../../models/User";
 
-const UserInfo = () => {
+const UserInfo = ({ data }: { data: UserResponseDTO }) => {
     return (
         <div>
-            <h2>アンテウン</h2>
-            <p>19900605</p>
-            <p>男性</p>
-            <p>エンジニア</p>
+            <h2>{data.id}</h2>
+            <p>{data.birthday}</p>
+            <p>{data.gender}</p>
+            <p>{data.position}</p>
         </div>
     );
 }

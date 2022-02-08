@@ -1,8 +1,9 @@
+import { UserResponseDTO } from "../../models/User";
 
-const UserProfile = () => {
+const UserProfile = ({ data }: { data: UserResponseDTO }) => {
     return (
         <>
-            <img src="" alt="profile"/>
+            <img src={data.image} alt="profile"/>
         </>
     );
 }
