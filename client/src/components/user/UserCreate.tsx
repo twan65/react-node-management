@@ -4,12 +4,14 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import { Container } from "@mui/material";
-import { UserCreateRequestDTO } from "../../models/User";
 import { useState } from "react";
 import { CreateUser } from "../../common/api/ApiOptions";
 import Api from "../../common/api/Api";
+import CommonDialog from "../common/CommonDialog";
+import { useHistory } from "react-router-dom";
 
 export default function UserCreate() {
+  let history = useHistory();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [birthday, setBirthday] = useState("");
@@ -19,7 +21,7 @@ export default function UserCreate() {
   const [gender, setGender] = useState("");
   const [position, setPosition] = useState("");
   const [role, setRole] = useState("");
-  const [isCreated, setIsCreated] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const onCreateUser = async () => {
     const param = {
@@ -35,15 +37,15 @@ export default function UserCreate() {
     };
 
     await Api.request(new CreateUser(), param);
-    setIsCreated(true);
+    setIsModalOpen(true);
   };
-
-  // TODO: 登録後、モーダルメッセージ表示
-  if (isCreated) {
-  }
 
   return (
     <Container fixed>
+      <CommonDialog
+        open={isModalOpen}
+        handleClose={() => history.push("/user/search")}
+      />
       <Typography variant="h6" gutterBottom>
         ユーザー登録
       </Typography>
@@ -142,7 +144,7 @@ export default function UserCreate() {
       <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
         <Button
           variant="contained"
-          onClick={() => alert("TODO: 登録処理")}
+          onClick={onCreateUser}
           sx={{ mt: 3, ml: 1 }}
         >
           登録
