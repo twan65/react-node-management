@@ -58,6 +58,8 @@ export default function UserCreate() {
             label="メールアドレス"
             fullWidth
             variant="standard"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </Grid>
         <Grid item xs={12}>
@@ -68,6 +70,8 @@ export default function UserCreate() {
             label="氏名"
             fullWidth
             variant="standard"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -78,6 +82,8 @@ export default function UserCreate() {
             label="gender"
             fullWidth
             variant="standard"
+            value={gender}
+            onChange={(e) => setGender(e.target.value)}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -88,6 +94,8 @@ export default function UserCreate() {
             label="birthday"
             fullWidth
             variant="standard"
+            value={birthday}
+            onChange={(e) => setBirthday(e.target.value)}
           />
         </Grid>
         <Grid item xs={12}>
@@ -98,6 +106,8 @@ export default function UserCreate() {
             label="都道府県"
             fullWidth
             variant="standard"
+            value={address1}
+            onChange={(e) => setAddress1(e.target.value)}
           />
         </Grid>
         <Grid item xs={12}>
@@ -108,6 +118,8 @@ export default function UserCreate() {
             label="市区町村"
             fullWidth
             variant="standard"
+            value={address2}
+            onChange={(e) => setAddress2(e.target.value)}
           />
         </Grid>
         <Grid item xs={12}>
@@ -118,6 +130,8 @@ export default function UserCreate() {
             label="アパート、マンション、部屋番号など"
             fullWidth
             variant="standard"
+            value={address3}
+            onChange={(e) => setAddress3(e.target.value)}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -128,6 +142,8 @@ export default function UserCreate() {
             label="ポジション"
             fullWidth
             variant="standard"
+            value={position}
+            onChange={(e) => setPosition(e.target.value)}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -138,6 +154,8 @@ export default function UserCreate() {
             label="権限"
             fullWidth
             variant="standard"
+            value={role}
+            onChange={(e) => setRole(e.target.value)}
           />
         </Grid>
       </Grid>
