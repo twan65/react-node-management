@@ -9,6 +9,10 @@ export interface UserCreateRequestDTO {
     position: string;
     role: string;
 }
+export interface UserSkillDTO {
+    name: string;
+    rating: number;
+}
 
 export interface UserResponseDTO {
     id: number;
@@ -21,6 +25,7 @@ export interface UserResponseDTO {
     address3: string;
     gender: string;
     position: string;
-    skils: string[];
+    skills: UserSkillDTO[];
     certificates: string[];
+    role: string;
 }

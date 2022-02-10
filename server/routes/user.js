@@ -13,7 +13,11 @@ const users = [
     address3: "荒川３−７２−２K2K ２０２",
     gender: "男性",
     position: "エンジニア",
-    skils: ["java", "Node", "React"],
+    skills: [
+      { name: "java", rating: 3 },
+      { name: "node.js", rating: 5 },
+      { name: "React", rating: 2 },
+    ],
     certificates: [],
     role: "ADMIN",
   },
@@ -28,7 +32,11 @@ const users = [
     address3: "荒川３−７２−２K2K ２０２",
     gender: "男性",
     position: "エンジニア",
-    skils: ["java", "Node", "React"],
+    skills: [
+      { name: "C", rating: 5 },
+      { name: "node.js", rating: 1 },
+      { name: "Spring", rating: 2 },
+    ],
     certificates: [],
     role: "USER",
   },
@@ -43,7 +51,11 @@ const users = [
     address3: "荒川３−７２−２K2K ２０２",
     gender: "男性",
     position: "エンジニア",
-    skils: ["java", "Node", "React"],
+    skills: [
+      { name: "java", rating: 3 },
+      { name: "node.js", rating: 5 },
+      { name: "React", rating: 2 },
+    ],
     certificates: [],
     role: "USER",
   },
@@ -64,7 +76,7 @@ router.post("/", (req, res, next) => {
   const user = {
     id: maxIndex + 1,
     ...entity,
-    skils: [],
+    skills: [],
     certificates: [],
     image: "https://placeimg.com/64/64/any",
   };

@@ -1,4 +1,3 @@
-import * as React from "react";
 import Divider from "@mui/material/Divider";
 import Paper from "@mui/material/Paper";
 import MenuList from "@mui/material/MenuList";
@@ -10,6 +9,9 @@ import ContentCut from "@mui/icons-material/ContentCut";
 import ContentCopy from "@mui/icons-material/ContentCopy";
 import ContentPaste from "@mui/icons-material/ContentPaste";
 import Cloud from "@mui/icons-material/Cloud";
+import { Link } from "react-router-dom";
+import PersonSearchIcon from "@mui/icons-material/PersonSearch";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
 
 export default function Sidebar() {
   return (
@@ -17,37 +19,26 @@ export default function Sidebar() {
       <MenuList>
         <MenuItem>
           <ListItemIcon>
-            <ContentCut fontSize="small" />
+            <PersonSearchIcon />
           </ListItemIcon>
-          <ListItemText>Cut</ListItemText>
-          <Typography variant="body2" color="text.secondary">
-            ⌘X
-          </Typography>
+          <ListItemText>
+            <Link to={"/user/search"}>ユーザー照会</Link>
+          </ListItemText>
         </MenuItem>
         <MenuItem>
           <ListItemIcon>
-            <ContentCopy fontSize="small" />
+            <PersonAddIcon />
           </ListItemIcon>
-          <ListItemText>Copy</ListItemText>
-          <Typography variant="body2" color="text.secondary">
-            ⌘C
-          </Typography>
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <ContentPaste fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Paste</ListItemText>
-          <Typography variant="body2" color="text.secondary">
-            ⌘V
-          </Typography>
+          <ListItemText>
+            <Link to={"/user/create"}>ユーザー登録</Link>
+          </ListItemText>
         </MenuItem>
         <Divider />
         <MenuItem>
           <ListItemIcon>
             <Cloud fontSize="small" />
           </ListItemIcon>
-          <ListItemText>Web Clipboard</ListItemText>
+          <ListItemText>etc</ListItemText>
         </MenuItem>
       </MenuList>
     </Paper>

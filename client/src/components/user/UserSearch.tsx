@@ -32,7 +32,7 @@ const UserSearch = () => {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>番号</TableCell>
+            <TableCell>メールアドレス</TableCell>
             <TableCell>プロフィール画像</TableCell>
             <TableCell>名前</TableCell>
             <TableCell>生年月日</TableCell>
@@ -45,7 +45,7 @@ const UserSearch = () => {
             ? users.map((e) => (
                 <TableRow key={e.id}>
                   <TableCell>
-                    <Link to={`/User/detail/${e.id}`}>{e.id}</Link>
+                    <Link to={`/user/detail/${e.id}`}>{e.email}</Link>
                   </TableCell>
                   <TableCell>
                     <img src={e.image} alt="profile"></img>
@@ -53,7 +53,7 @@ const UserSearch = () => {
                   <TableCell>{e.name}</TableCell>
                   <TableCell>{e.birthday}</TableCell>
                   <TableCell>{e.gender}</TableCell>
-                  <TableCell>{e.job}</TableCell>
+                  <TableCell>{e.position}</TableCell>
                 </TableRow>
               ))
             : ""}
