@@ -1,5 +1,3 @@
-import { idText } from "typescript";
-
 export interface ApiOptions {
   method: string;
   url: string;
