@@ -36,6 +36,23 @@ export default function Sidebar() {
         <Divider />
         <MenuItem>
           <ListItemIcon>
+            <PersonAddIcon />
+          </ListItemIcon>
+          <ListItemText>
+            <Link to={"/user/create"}>休み照会</Link>
+          </ListItemText>
+        </MenuItem>
+        <MenuItem>
+          <ListItemIcon>
+            <PersonAddIcon />
+          </ListItemIcon>
+          <ListItemText>
+            <Link to={"/user/create"}>休み申請</Link>
+          </ListItemText>
+        </MenuItem>
+        <Divider />
+        <MenuItem>
+          <ListItemIcon>
             <Cloud fontSize="small" />
           </ListItemIcon>
           <ListItemText>etc</ListItemText>

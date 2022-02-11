@@ -85,4 +85,20 @@ router.post("/", (req, res, next) => {
   res.send(user);
 });
 
+router.post("/login", (req, res, next) => {
+  let entity = req.body;
+  const userIndexList = users.map((e) => e.id);
+  const maxIndex = Math.max(...userIndexList);
+  const user = {
+    id: maxIndex + 1,
+    ...entity,
+    skills: [],
+    certificates: [],
+    image: "https://placeimg.com/64/64/any",
+  };
+  users.push(user);
+
+  res.send(user);
+});
+
 module.exports = router;
