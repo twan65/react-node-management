@@ -9,8 +9,14 @@ const Api = {
    * @returns api response
    */
   request: async <T extends ApiOptions>(options: T, params?: any) => {
+    const token = localStorage.getItem('token');
+    const bearerToken = `Bearer ${  token}`;
 
-    let axiosConfig = axios.create();
+    let headers = {
+      "Authorization": bearerToken,
+    } as any;
+
+    let axiosConfig = axios.create(headers);
     let axiosBody = {
       method: options.method,
       url: options.url,

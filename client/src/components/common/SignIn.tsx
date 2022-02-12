@@ -11,6 +11,9 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { Login } from "../../common/api/ApiOptions";
+import Api from "../../common/api/Api";
+import { Redirect } from "react-router-dom";
 
 function Copyright(props: any) {
   return (
@@ -33,15 +36,24 @@ function Copyright(props: any) {
 const theme = createTheme();
 
 export default function SignIn() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
+    const loginParam = {
       email: data.get("email"),
       password: data.get("password"),
-    });
+    };
+
+    const res = await Api.request(new Login(), loginParam);
+    const json = res.data;
+    localStorage.setItem("token", json.token);
+    return data;
   };
+
+  const token = localStorage.getItem("token");
+  if (token !== null) {
+    return <Redirect push to="/user/search" />;
+  }
 
   return (
     <ThemeProvider theme={theme}>

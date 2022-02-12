@@ -1,4 +1,7 @@
 const express = require("express");
+const jwt = require("jsonwebtoken");
+const passport = require("passport");
+var bcrypt = require("bcrypt");
 const router = express.Router();
 
 const users = [
@@ -85,20 +88,48 @@ router.post("/", (req, res, next) => {
   res.send(user);
 });
 
-router.post("/login", (req, res, next) => {
-  let entity = req.body;
-  const userIndexList = users.map((e) => e.id);
-  const maxIndex = Math.max(...userIndexList);
-  const user = {
-    id: maxIndex + 1,
-    ...entity,
-    skills: [],
-    certificates: [],
-    image: "https://placeimg.com/64/64/any",
-  };
-  users.push(user);
+router.post("/login", function (req, res, next) {
+  passport.authenticate(
+    "local",
+    {
+      session: false,
+    },
+    (err, user, info) => {
+      if (err || !user) {
+        return res.status(400).json({
+          message: info ? info.message : "ログインに失敗しました。",
+          user: user,
+        });
+      }
 
-  res.send(user);
+      req.login(
+        user,
+        {
+          session: false,
+        },
+        (err) => {
+          if (err) {
+            res.send("err");
+          }
+
+          const info = {
+            id: user.id,
+            email: user.email,
+            name: user.name,
+            role: user.role,
+          };
+
+          const token = jwt.sign(info, "aot-management" /*{expiresIn: '5s'}*/);
+
+          return res.json({
+            message: info.message,
+            user: info,
+            token,
+          });
+        }
+      );
+    }
+  )(req, res);
 });
 
 module.exports = router;

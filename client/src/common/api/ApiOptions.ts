@@ -3,6 +3,11 @@ export interface ApiOptions {
   url: string;
 };
 
+export class Login implements ApiOptions {
+  method = "POST";
+  url = "/api/v1/users/login";
+};
+
 export class GetUsers implements ApiOptions {
   method = "GET";
   url = "/api/v1/users";

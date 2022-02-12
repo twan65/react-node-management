@@ -1,18 +1,17 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
 const app = express();
 const port = process.env.PORT || 5000;
 
-
-const passport = require('passport');
+// const passport = require("passport");
 
 const user = require("./routes/user");
 
-require('./middleware/passport');
+require("./middleware/passport");
 
-app.use(logger('dev'));
+app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
