@@ -4,16 +4,27 @@ import MenuList from "@mui/material/MenuList";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import Typography from "@mui/material/Typography";
-import ContentCut from "@mui/icons-material/ContentCut";
-import ContentCopy from "@mui/icons-material/ContentCopy";
-import ContentPaste from "@mui/icons-material/ContentPaste";
 import Cloud from "@mui/icons-material/Cloud";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import PersonSearchIcon from "@mui/icons-material/PersonSearch";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import Api from "../../common/api/Api";
+import { useAuth } from "../../common/context/AuthContext";
+import { Box, Button } from "@mui/material";
 
 export default function Sidebar() {
+  const { dispatch } = useAuth();
+  let history = useHistory();
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    localStorage.removeItem("token");
+    dispatch({
+      type: "removeId",
+    });
+    history.push("/signin");
+  };
+
   return (
     <Paper sx={{ width: 320, maxWidth: "100%" }}>
       <MenuList>
@@ -55,7 +66,18 @@ export default function Sidebar() {
           <ListItemIcon>
             <Cloud fontSize="small" />
           </ListItemIcon>
-          <ListItemText>etc</ListItemText>
+          <ListItemText>
+            <Box
+              component="form"
+              onSubmit={handleSubmit}
+              noValidate
+              sx={{ mt: 1 }}
+            >
+              <Button type="submit" color="secondary">
+                ログアウト
+              </Button>
+            </Box>
+          </ListItemText>
         </MenuItem>
       </MenuList>
     </Paper>
