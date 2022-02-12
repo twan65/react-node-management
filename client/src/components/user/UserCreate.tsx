@@ -79,7 +79,7 @@ export default function UserCreate() {
             required
             id="gender"
             name="gender"
-            label="gender"
+            label="性別"
             fullWidth
             variant="standard"
             value={gender}
@@ -91,7 +91,7 @@ export default function UserCreate() {
             required
             id="birthday"
             name="birthday"
-            label="birthday"
+            label="生年月日"
             fullWidth
             variant="standard"
             value={birthday}
