@@ -23,12 +23,13 @@ export function useAuth() {
 }
 
 export function PrivateRoute(props: any) {
+  const auth = useAuth();
   return (
     <Route
       path={props.path}
       exact={props.exact || false}
       render={() =>
-        props.username ? <props.component /> : <Redirect to={"/signin"} />
+        auth.state.name ? <props.component /> : <Redirect to={"/signin"} />
       }
     />
   );

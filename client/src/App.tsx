@@ -14,6 +14,20 @@ import { useReducer } from "react";
 
 function App() {
   const [state, dispatch] = useReducer(userAuthReducer, initialState);
+
+  (function () {
+    const loggedUserStr = localStorage.getItem("loggedUser");
+    if (!loggedUserStr || state.name) {
+      return;
+    }
+
+    const loggedUser = JSON.parse(loggedUserStr);
+    dispatch({
+      type: "setId",
+      payload: loggedUser.name,
+    });
+  })();
+
   return (
     <UserAuthContext.Provider value={{ state, dispatch }}>
       <Router>
@@ -34,18 +48,9 @@ function App() {
               exact
               path="/user/detail/:user_id"
               component={UserDetail}
-              username={state.name}
             />
-            <PrivateRoute
-              path="/user/search"
-              component={UserSearch}
-              username={state.name}
-            />
-            <PrivateRoute
-              path="/user/create"
-              component={UserCreate}
-              username={state.name}
-            />
+            <PrivateRoute path="/user/search" component={UserSearch} />
+            <PrivateRoute path="/user/create" component={UserCreate} />
           </Grid>
         </Grid>
       </Router>

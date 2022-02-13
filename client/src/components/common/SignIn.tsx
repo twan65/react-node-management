@@ -50,6 +50,7 @@ export default function SignIn() {
     const res = await Api.request(new Login(), loginParam);
     const json = res.data;
     localStorage.setItem("token", json.token);
+    localStorage.setItem("loggedUser", JSON.stringify(json.user));
     // TODO: ログイン失敗時の処理
 
     dispatch({
@@ -116,15 +117,11 @@ export default function SignIn() {
             >
               Sign In
             </Button>
-            <Grid container>
-              <Grid item xs>
+            <Grid container justifyContent="center">
+              <Grid item>
+                {/* TODO: パスワードの初期化 */}
                 <Link href="#" variant="body2">
                   Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
             </Grid>
