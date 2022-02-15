@@ -26,6 +26,6 @@ export interface UserResponseDTO {
     gender: string;
     position: string;
     skills: UserSkillDTO[];
-    certificates: string[];
+    licenses: string[];
     role: string;
 }

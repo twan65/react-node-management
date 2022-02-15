@@ -56,8 +56,8 @@ export default function UserDetail() {
         <Grid item xs={12}>
           資格
         </Grid>
-        {user.certificates &&
-          user.certificates.map((certificate) => {
+        {user.licenses &&
+          user.licenses.map((certificate) => {
             return (
               <Grid item xs={12} sm={6}>
                 <Typography component="legend">{certificate}</Typography>

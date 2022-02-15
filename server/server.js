@@ -18,4 +18,7 @@ app.use(cookieParser());
 
 app.use("/api/v1/users", user);
 
+// DB接続
+// require("./utils/db.connection");
+
 app.listen(port, () => console.log(`Listening on port ${port}`));
