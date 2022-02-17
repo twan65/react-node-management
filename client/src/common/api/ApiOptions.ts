@@ -5,7 +5,7 @@ export interface ApiOptions {
 
 export class Login implements ApiOptions {
   method = "POST";
-  url = "/api/v1/users/login";
+  url = "/api/v1/login";
 };
 
 export class GetUsers implements ApiOptions {
