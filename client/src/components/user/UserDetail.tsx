@@ -1,10 +1,10 @@
 import Typography from "@mui/material/Typography";
-import { Container, TextField } from "@mui/material";
+import { Container } from "@mui/material";
 import Rating from "@mui/material/Rating";
 import { GetUser } from "../../common/api/ApiOptions";
 import Api from "../../common/api/Api";
 import { UserResponseDTO } from "../../models/User";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Loading from "../common/Loading";
 import UserProfile from "./UserProfile";
@@ -13,6 +13,7 @@ import Grid from "@mui/material/Grid";
 
 export default function UserDetail() {
   let { user_id }: any = useParams();
+  let history = useHistory();
 
   const [user, setUser] = useState<UserResponseDTO>();
   useEffect(() => {
@@ -22,6 +23,11 @@ export default function UserDetail() {
   // ユーザーIDで該当ユーザーの情報を取得する。
   const getUser = async () => {
     const res = await Api.request(new GetUser().setId(user_id));
+    if (res.error) {
+      alert(res.error.response.data.message);
+      history.push("/user/search");
+    }
+
     const data = res.data as UserResponseDTO;
     setUser(data);
     return data;

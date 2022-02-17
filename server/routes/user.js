@@ -17,6 +17,12 @@ router.get("/:id", async (req, res, next) => {
   const id = req.params.id;
 
   const user = await User.findOneById(id);
+  if (!user) {
+    console.log(`存在しないユーザー。ID：${id}`);
+    return res.status(400).json({
+      message: "該当ユーザーは存在しません。",
+    });
+  }
 
   delete user.password;
 
@@ -25,18 +31,7 @@ router.get("/:id", async (req, res, next) => {
 
   user.skills = skills;
   user.licenses = licenses;
-  // User.findOneById(id).then((user) => {
-  //   if (!user) {
-  //     console.log("ユーザーが存在しない。ID：" + id);
-  //     res.status(400).send({ message: "該当ユーザーは存在しません。" });
-  //   }
 
-  //   // password項目を削除
-  //   delete user.password;
-
-  //   // TODO: スキル、資格取得して一緒に送ること
-
-  // });
   res.status(200).send(user);
 });
 
