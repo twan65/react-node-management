@@ -11,6 +11,7 @@ import Api from "../../common/api/Api";
 import { GetUsers } from "../../common/api/ApiOptions";
 import { Container } from "@mui/material";
 import Typography from "@mui/material/Typography";
+import UserProfile from "./UserProfile";
 
 const UserSearch = () => {
   const [users, setUsers] = useState<any[]>([]);
@@ -48,7 +49,7 @@ const UserSearch = () => {
                     <Link to={`/user/detail/${e.id}`}>{e.email}</Link>
                   </TableCell>
                   <TableCell>
-                    <img src={e.image} alt="profile"></img>
+                    <UserProfile data={e} />
                   </TableCell>
                   <TableCell>{e.name}</TableCell>
                   <TableCell>{e.birthday}</TableCell>

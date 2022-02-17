@@ -17,7 +17,7 @@ export interface UserSkillDTO {
 export interface UserResponseDTO {
     id: number;
     email: string;
-    image: string;
+    image_path: string;
     name: string;
     birthday: Date;
     address1: string;

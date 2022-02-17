@@ -48,6 +48,11 @@ export default function SignIn() {
     };
 
     const res = await Api.request(new Login(), loginParam);
+
+    if (res.error) {
+      alert(res.error.response.data.message);
+      return;
+    }
     const json = res.data;
     localStorage.setItem("token", json.token);
     localStorage.setItem("loggedUser", JSON.stringify(json.user));

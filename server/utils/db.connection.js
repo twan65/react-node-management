@@ -6,14 +6,15 @@ const connection = mysql2.createConnection({
   user: dbConfig.username,
   password: dbConfig.password,
   database: dbConfig.database,
+  enableKeepAlive: true,
 });
 
-connection.connect((err) => {
-  if (err) {
-    console.log("error connecting: " + err.stack);
-    return;
-  }
-  console.log("success");
-});
+// connection.connect((err) => {
+//   if (err) {
+//     console.log("error connecting: " + err.stack);
+//     return;
+//   }
+//   console.log("success");
+// });
 
 module.exports = connection;
