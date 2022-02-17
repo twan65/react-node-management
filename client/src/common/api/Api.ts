@@ -16,7 +16,7 @@ const Api = {
       "Authorization": bearerToken,
     } as any;
 
-    let axiosConfig = axios.create(headers);
+    let axiosConfig = axios.create({headers});
     let axiosBody = {
       method: options.method,
       url: options.url,
@@ -41,6 +41,7 @@ const Api = {
         return { data: res.data, error: null };
       })
       .catch((error) => {
+        // TODO: 500エラーの場合、エラー画面へ遷移すること
         return { data: null, error: error };
       });
   },
