@@ -53,10 +53,10 @@ export default function SignIn() {
       alert(res.error.response.data.message);
       return;
     }
+
     const json = res.data;
     localStorage.setItem("token", json.token);
     localStorage.setItem("loggedUser", JSON.stringify(json.user));
-    // TODO: ログイン失敗時の処理
 
     dispatch({
       type: "setId",
