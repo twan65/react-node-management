@@ -3,20 +3,40 @@ var bcrypt = require("bcrypt");
 const router = express.Router();
 
 const User = require("../models/user");
-const UserRole = require("../models/userRole");
+const UserSkill = require("../models/userSkill");
+const UserLicense = require("../models/userLicense");
 
 router.get("/", (req, res, next) => {
-  User.findAll().then((users) => {
+  User.findAll().then((user) => {
     // TODO: usersからpassowrdを除いて送ること
-    res.status(200).send(users);
+    res.status(200).send(user);
   });
 });
 
-router.get("/:id", (req, res, next) => {
-  console.log(`ユーザー取得ID：${req.params.id}`);
-  const user = User.findOneById(req.params.id);
-  // TODO: password項目を削除
-  // TODO: スキル、資格取得して一緒に送ること
+router.get("/:id", async (req, res, next) => {
+  const id = req.params.id;
+
+  const user = await User.findOneById(id);
+
+  delete user.password;
+
+  const skills = await UserSkill.findAllByUserId(id);
+  const licenses = await UserLicense.findAllByUserId(id);
+
+  user.skills = skills;
+  user.licenses = licenses;
+  // User.findOneById(id).then((user) => {
+  //   if (!user) {
+  //     console.log("ユーザーが存在しない。ID：" + id);
+  //     res.status(400).send({ message: "該当ユーザーは存在しません。" });
+  //   }
+
+  //   // password項目を削除
+  //   delete user.password;
+
+  //   // TODO: スキル、資格取得して一緒に送ること
+
+  // });
   res.status(200).send(user);
 });
 

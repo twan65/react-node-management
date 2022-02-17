@@ -47,7 +47,7 @@ export default function UserDetail() {
         {user.skills &&
           user.skills.map((skill) => {
             return (
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={6} key={skill.id}>
                 <Typography component="legend">{skill.name}</Typography>
                 <Rating name="read-only" value={skill.rating} readOnly />
               </Grid>
@@ -57,10 +57,10 @@ export default function UserDetail() {
           資格
         </Grid>
         {user.licenses &&
-          user.licenses.map((certificate) => {
+          user.licenses.map((license) => {
             return (
-              <Grid item xs={12} sm={6}>
-                <Typography component="legend">{certificate}</Typography>
+              <Grid item xs={12} sm={6} key={license.id}>
+                <Typography component="legend">{license.name}</Typography>
               </Grid>
             );
           })}

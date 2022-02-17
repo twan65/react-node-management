@@ -10,8 +10,14 @@ export interface UserCreateRequestDTO {
     role: string;
 }
 export interface UserSkillDTO {
+    id: number;
     name: string;
     rating: number;
+}
+
+export interface UserLicenseDTO {
+    id: number;
+    name: string;
 }
 
 export interface UserResponseDTO {
@@ -26,6 +32,6 @@ export interface UserResponseDTO {
     gender: string;
     position: string;
     skills: UserSkillDTO[];
-    licenses: string[];
+    licenses: UserLicenseDTO[];
     role: string;
 }
