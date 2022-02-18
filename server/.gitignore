@@ -6,6 +6,7 @@
 .pnp.js
 
 /docker-db/data
+/config/slack.js
 
 # testing
 /coverage
