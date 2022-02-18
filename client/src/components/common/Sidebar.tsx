@@ -19,6 +19,7 @@ export default function Sidebar() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     localStorage.removeItem("token");
+    localStorage.removeItem("loggedUser");
     dispatch({
       type: "removeId",
     });
